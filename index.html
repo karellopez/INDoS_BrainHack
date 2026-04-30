@@ -38,6 +38,33 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <svg class="workflow-animation workflow-graph" viewBox="0 0 880 230" role="button" tabindex="0" aria-label="Raw multimodal data to BIDS conversion, quality assessment, quality control, and reports. Click to highlight the workflow node by node.">
+            <defs>
+              <filter id="workflow-node-glow" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
+                <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#b8f46d" flood-opacity="0.72"></feDropShadow>
+                <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#4de3ff" flood-opacity="0.42"></feDropShadow>
+              </filter>
+              <filter id="workflow-dot-glow" x="-220%" y="-220%" width="540%" height="540%" color-interpolation-filters="sRGB">
+                <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffffff" flood-opacity="0.58"></feDropShadow>
+                <feDropShadow dx="0" dy="0" stdDeviation="7" flood-color="#4de3ff" flood-opacity="0.7"></feDropShadow>
+              </filter>
+              <filter id="workflow-spotlight-glow" x="-180%" y="-180%" width="460%" height="460%" color-interpolation-filters="sRGB">
+                <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#ffffff" flood-opacity="0.82"></feDropShadow>
+                <feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#4de3ff" flood-opacity="0.7"></feDropShadow>
+              </filter>
+              <filter id="workflow-flash-glow" x="-220%" y="-220%" width="540%" height="540%" color-interpolation-filters="sRGB">
+                <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#ffffff" flood-opacity="0.78"></feDropShadow>
+                <feDropShadow dx="0" dy="0" stdDeviation="14" flood-color="#ff8b6b" flood-opacity="0.72"></feDropShadow>
+              </filter>
+              <filter id="workflow-brain-glow" x="-120%" y="-120%" width="340%" height="340%" color-interpolation-filters="sRGB">
+                <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#b8f46d" flood-opacity="0.72"></feDropShadow>
+                <feDropShadow dx="0" dy="0" stdDeviation="13" flood-color="#4de3ff" flood-opacity="0.58"></feDropShadow>
+                <feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#ff8b6b" flood-opacity="0.34"></feDropShadow>
+              </filter>
+              <filter id="workflow-text-glow" x="-60%" y="-120%" width="220%" height="340%" color-interpolation-filters="sRGB">
+                <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ffffff" flood-opacity="0.86"></feDropShadow>
+                <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#4de3ff" flood-opacity="0.62"></feDropShadow>
+              </filter>
+            </defs>
             <path id="workflow-main-path" class="workflow-line main-line" d="M74 116 C150 44 230 44 306 116 S458 188 534 116 S694 44 812 116"></path>
             <path id="workflow-audit-path" class="workflow-line audit-line" d="M72 116 C150 124 180 68 246 68 C282 68 304 88 326 112"></path>
             <path id="workflow-qc-path" class="workflow-line qc-line" d="M536 116 C596 76 648 84 694 124 C728 153 766 149 812 116"></path>
@@ -72,17 +99,17 @@
               <path class="node-icon" d="M0 0 h60 v68 H0z M13 17 h34 M13 32 h28 M13 47 h34 M43 0 v17 h17"></path>
               <text x="30" y="96">Reports</text>
             </g>
-            <circle class="travel-dot dot-main" r="5"></circle>
-            <circle class="travel-dot dot-audit" r="4"></circle>
-            <circle class="travel-dot dot-qc" r="4"></circle>
-            <circle class="workflow-spotlight" r="17"></circle>
-            <circle class="workflow-flash" r="10"></circle>
-            <g class="click-brain stage-0">
+            <circle class="travel-dot dot-main" r="5" filter="url(#workflow-dot-glow)"></circle>
+            <circle class="travel-dot dot-audit" r="4" filter="url(#workflow-dot-glow)"></circle>
+            <circle class="travel-dot dot-qc" r="4" filter="url(#workflow-dot-glow)"></circle>
+            <circle class="workflow-spotlight" r="17" filter="url(#workflow-spotlight-glow)"></circle>
+            <circle class="workflow-flash" r="10" filter="url(#workflow-flash-glow)"></circle>
+            <g class="click-brain stage-0" filter="url(#workflow-brain-glow)">
               <circle class="click-brain-halo" r="30"></circle>
-              <image class="brain-image brain-start" href="assets/workflow/brain-start.png" x="-24" y="-24" width="48" height="48"></image>
-              <image class="brain-image brain-final" href="assets/workflow/brain-final.png" x="-24" y="-24" width="48" height="48"></image>
+              <image class="brain-image brain-start" href="assets/workflow/brain-start-white.png" x="-24" y="-24" width="48" height="48"></image>
+              <image class="brain-image brain-final" href="assets/workflow/brain-final-white.png" x="-24" y="-24" width="48" height="48"></image>
             </g>
-            <text class="brainhack-pop" x="474" y="24">BrainHack</text>
+            <text class="brainhack-pop" x="474" y="24" filter="url(#workflow-text-glow)">BrainHack</text>
           </svg>
           <p class="workflow-click-hint" aria-hidden="true">Click animation to play workflow</p>
           <p class="eyebrow">INDoS BrainHack workshops</p>

@@ -36,6 +36,14 @@ const initialTheme = storedTheme || (prefersLight ? "light" : "dark");
 
 function setTheme(theme) {
   root.dataset.theme = theme;
+  const darkTheme = theme !== "light";
+  const brainAssetSuffix = darkTheme ? "-white" : "";
+  document
+    .querySelector(".brain-start")
+    ?.setAttribute("href", `assets/workflow/brain-start${brainAssetSuffix}.png`);
+  document
+    .querySelector(".brain-final")
+    ?.setAttribute("href", `assets/workflow/brain-final${brainAssetSuffix}.png`);
   if (!themeToggle) return;
   const isLight = theme === "light";
   themeToggle.textContent = isLight ? "Dark theme" : "Light theme";
@@ -152,6 +160,8 @@ function initWorkflowGraph() {
   ].map((node) => ({ ...node, element: workflowGraph.querySelector(node.selector) }));
 
   function highlightNearestNode(point) {
+    if (workflowGraph.classList.contains("is-stepping")) return;
+
     let closest = null;
     let closestDistance = Infinity;
 
@@ -163,9 +173,13 @@ function initWorkflowGraph() {
       }
     });
 
-    nodes.forEach(({ element }) => element?.classList.remove("is-path-active"));
+    nodes.forEach(({ element }) => {
+      element?.classList.remove("is-path-active");
+      element?.removeAttribute("filter");
+    });
     if (closest && closestDistance < 46) {
       closest.element?.classList.add("is-path-active");
+      closest.element?.setAttribute("filter", "url(#workflow-node-glow)");
     }
   }
 
@@ -210,7 +224,10 @@ function initWorkflowGraph() {
     spotlight?.classList.remove("is-visible");
     clickBrain?.classList.remove("is-visible");
     brainHackText?.classList.remove("is-visible");
-    nodes.forEach(({ element }) => element?.classList.remove("is-active"));
+    nodes.forEach(({ element }) => {
+      element?.classList.remove("is-active", "is-path-active");
+      element?.removeAttribute("filter");
+    });
   }
 
   function easeInOut(t) {
@@ -222,12 +239,18 @@ function initWorkflowGraph() {
   }
 
   function flashNode(node, stage) {
-    nodes.forEach(({ element }) => element?.classList.remove("is-active"));
+    nodes.forEach(({ element }) => {
+      element?.classList.remove("is-active", "is-path-active");
+      element?.removeAttribute("filter");
+    });
     node.element?.classList.add("is-active");
+    node.element?.setAttribute("filter", "url(#workflow-node-glow)");
 
     const color = randomFlashColor();
     if (spotlight) {
       spotlight.style.color = color;
+      spotlight.style.fill = color;
+      spotlight.setAttribute("fill", color);
       spotlight.setAttribute("cx", String(node.x));
       spotlight.setAttribute("cy", String(node.y));
       spotlight.setAttribute("r", String(20 + stage * 2.2));
@@ -236,6 +259,8 @@ function initWorkflowGraph() {
 
     if (flash) {
       flash.style.color = color;
+      flash.style.stroke = color;
+      flash.setAttribute("stroke", color);
       flash.setAttribute("cx", String(node.x));
       flash.setAttribute("cy", String(node.y));
       flash.classList.remove("is-flashing");

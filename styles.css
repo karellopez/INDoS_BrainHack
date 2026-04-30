@@ -318,9 +318,8 @@ a {
 .workflow-graph .workflow-node.is-active,
 .workflow-graph .workflow-node.is-path-active {
   opacity: 1;
-  filter:
-    drop-shadow(0 0 10px rgba(184, 244, 109, 0.72))
-    drop-shadow(0 0 24px rgba(77, 227, 255, 0.42));
+  -webkit-filter: url(#workflow-node-glow);
+  filter: url(#workflow-node-glow);
 }
 
 .workflow-graph .workflow-node.is-active .node-icon,
@@ -369,7 +368,8 @@ a {
 .travel-dot {
   opacity: 0.95;
   pointer-events: none;
-  filter: drop-shadow(0 0 9px currentColor);
+  -webkit-filter: url(#workflow-dot-glow);
+  filter: url(#workflow-dot-glow);
 }
 
 .dot-main {
@@ -392,9 +392,8 @@ a {
   color: var(--lime);
   opacity: 0;
   pointer-events: none;
-  filter:
-    drop-shadow(0 0 18px currentColor)
-    drop-shadow(0 0 42px rgba(77, 227, 255, 0.55));
+  -webkit-filter: url(#workflow-spotlight-glow);
+  filter: url(#workflow-spotlight-glow);
   transition: opacity 160ms ease, r 160ms ease;
 }
 
@@ -408,9 +407,8 @@ a {
   stroke-width: 4;
   opacity: 0;
   pointer-events: none;
-  filter:
-    drop-shadow(0 0 18px currentColor)
-    drop-shadow(0 0 44px currentColor);
+  -webkit-filter: url(#workflow-flash-glow);
+  filter: url(#workflow-flash-glow);
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -425,9 +423,8 @@ a {
   transform-box: fill-box;
   transform-origin: center;
   transition: opacity 160ms ease, transform 220ms ease;
-  filter:
-    drop-shadow(0 0 18px rgba(184, 244, 109, 0.72))
-    drop-shadow(0 0 42px rgba(77, 227, 255, 0.42));
+  -webkit-filter: url(#workflow-brain-glow);
+  filter: url(#workflow-brain-glow);
 }
 
 .click-brain.is-visible {
@@ -443,7 +440,8 @@ a {
 }
 
 .brain-image {
-  filter: invert(1);
+  -webkit-filter: none;
+  filter: none;
   transform-box: fill-box;
   transform-origin: center;
   transition: opacity 220ms ease, transform 220ms ease;
@@ -498,10 +496,8 @@ a {
 .click-brain.stage-3,
 .click-brain.stage-4,
 .click-brain.stage-5 {
-  filter:
-    drop-shadow(0 0 20px rgba(184, 244, 109, 0.88))
-    drop-shadow(0 0 54px rgba(77, 227, 255, 0.58))
-    drop-shadow(0 0 28px rgba(255, 139, 107, 0.38));
+  -webkit-filter: url(#workflow-brain-glow);
+  filter: url(#workflow-brain-glow);
 }
 
 .click-brain.stage-5 .click-brain-halo {
@@ -515,9 +511,8 @@ a {
   letter-spacing: 0;
   opacity: 0;
   pointer-events: none;
-  filter:
-    drop-shadow(0 0 10px rgba(255, 255, 255, 0.84))
-    drop-shadow(0 0 26px rgba(77, 227, 255, 0.52));
+  -webkit-filter: url(#workflow-text-glow);
+  filter: url(#workflow-text-glow);
 }
 
 .brainhack-pop.is-visible {
@@ -531,10 +526,6 @@ a {
 
 [data-theme="light"] .workflow-graph .workflow-node text {
   fill: var(--text);
-}
-
-[data-theme="light"] .brain-image {
-  filter: none;
 }
 
 [data-theme="light"] .click-brain-halo {

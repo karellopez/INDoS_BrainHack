@@ -4,7 +4,7 @@ Use this file as the starting context if work on the website continues later.
 
 ## Project Purpose
 
-This repository contains a static landing page for INDoS BrainHack workshop proposals around two software tools:
+This repository contains a static landing page for the INDoS OHBM BrainHack TrainTrack and workshop around two software tools:
 
 - **BIDS Manager**: interactive raw-to-BIDS curation for MRI, MEG, and EEG workflows.
 - **MEEGqc / MEGqc**: reproducible MEG/EEG quality assessment and quality-control reporting.
@@ -14,7 +14,7 @@ The page is intended to be hosted as a public URL and shared with the BrainHack 
 Current page order:
 
 1. Hero with tool GUI/MRI/topomap background images, a theme toggle, and a lightweight graph-style workflow animation.
-2. Detailed June 12th workshop programme, starting with a clear visual timeline.
+2. Detailed June 12th TrainTrack and workshop programme, starting with a clear visual timeline.
 3. Reproducibility workflow.
 4. BIDS Manager software section.
 5. MEEGqc software section.
@@ -31,13 +31,13 @@ Organizer context from Felix:
 
 Current INDoS schedule shown on this page:
 
-- **June 12th morning:** BIDS Manager extended data curation and conversion workshop, 1h30.
-- **June 12th morning:** BIDS Manager fast-track data curation and conversion session, 45 minutes.
+- **June 12th morning:** BIDS Manager TrainTrack for multimodal data curation and conversion, preferred 1h30 Deeper TrainTrack format.
+- **June 12th morning fallback option:** BIDS Manager fast-track TrainTrack format, 45 minutes, if the schedule needs a shorter slot.
 - **June 12th afternoon:** MEEGqc reproducible EEG/MEG quality assessment and quality-control workshop, duration to be confirmed.
 
-Tutors for all listed sessions: **Dr. Karel López Vilaret** and **Dr. Jorge F. Bosch-Bayard**.
+Tutors for the TrainTrack and workshop: **Dr. Karel López Vilaret** and **Dr. Jorge F. Bosch-Bayard**.
 
-The two BIDS Manager sessions should be grouped together. They cover the same raw-to-BIDS curation and conversion workflow. The difference is depth: the 1h30 session is hands-on and explanatory, while the 45-minute session is the concise version.
+The BIDS Manager contribution should be framed as one TrainTrack with two possible durations. The 1h30 version is the preferred hands-on/explanatory format; the 45-minute version is a lighter fallback option, not a separate workshop. MEEGqc is the separate afternoon workshop.
 
 ## Repository
 
@@ -88,11 +88,11 @@ The workshop programme copy should be synthesized from:
 
 Version 3 contains the strongest positioning and should be treated as the primary source. Versions 1 and 2 are useful for fallback phrasing and shorter descriptions.
 
-Current sessions on the page:
+Current programme entries on the page:
 
-- `Multimodal raw-to-BIDS curation and conversion with BIDS Manager`
-- `Fast-track BIDS curation and conversion with BIDS Manager`
-- `Reproducible EEG and MEG quality assessment and quality control with MEEGqc`
+- `Multimodal raw-to-BIDS curation and conversion with BIDS Manager` as the INDoS TrainTrack.
+- `Fast-track BIDS curation and conversion with BIDS Manager` as the optional shorter TrainTrack format.
+- `MEEGqc workshop: reproducible EEG and MEG quality assessment and quality control` as the INDoS workshop.
 
 ## Related Repositories
 
@@ -134,9 +134,9 @@ Key BIDS Manager points to preserve:
 
 MEEGqc should be presented as a reproducible quality assessment and quality-control framework, with the two layers clearly separated:
 
-- **Quality assessment:** measures and profiles data quality evidence.
-- **Quality control:** supports documented decisions based on that evidence.
-- Assessment metrics include STD, peak-to-peak amplitude, PSD, ECG/EOG contamination, muscle artifacts, stimulus checks, and MEG head-motion summaries when available.
+- **Quality assessment:** descriptive measurement and characterization only. QA computes continuous descriptors and preserves distributions, quantiles, temporal footprints, spatial sensor patterns, spectral profiles, physiological-coupling summaries, event/stimulus summaries, and head-motion summaries. QA should not be described as deciding whether something is noisy, flat, contaminated, excluded, or bad.
+- **Quality control:** criterion-based decision support on top of QA outputs. QC uses explicit thresholds/configuration criteria to transform continuous QA measurements into burden indicators, flags, ranking/screening outputs, exclusions, repair/interpolation candidates, GQI attempts, or other documented decisions.
+- Assessment metrics include STD, peak-to-peak amplitude, PSD summaries, ECG/EOG correlation magnitudes, high-frequency muscle-burden profiles, stimulus/event summaries, and MEG head-motion summaries when available.
 - Outputs include interactive subject HTML reports, metric TSV tables, JSON summaries, BIDS derivatives, group quality reports, and multi-sample comparisons.
 - Supports GUI, command-line, and programmatic workflows.
 - Supports MEG, standalone EEG, and EEG channels embedded in MEG recordings.
@@ -257,7 +257,7 @@ assets/indos-logo-white.png
 ## Design Notes
 
 - The page supports dark and light themes through the header theme toggle. The selected theme is stored in `localStorage` under `indos-theme`.
-- The header brand text is `INDoS Train Tracks - OHBM BrainHack`; clicking the INDoS/logo brand opens `https://www.indos-costaction.eu` in a new tab.
+- The header brand text is `INDoS TrainTrack and Workshop - OHBM BrainHack`; clicking the INDoS/logo brand opens `https://www.indos-costaction.eu` in a new tab.
 - The hero includes overlapping software screenshots/GIFs from real tool GUIs, MRI/slice animations, and one MEEGqc topomap animation.
 - The animation is a lightweight interactive graph-style SVG above the title, representing `Raw multimodal data -> Scan and inspect -> BIDS conversion -> Quality assessment: Measure -> Quality control: Decision -> Reports`.
 - The animation should keep the full terms `Quality assessment` and `Quality control`, with the explanatory words `Measure` and `Decision`.

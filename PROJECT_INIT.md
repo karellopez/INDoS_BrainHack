@@ -13,12 +13,13 @@ The page is intended to be hosted as a public URL and shared with the BrainHack 
 
 Current page order:
 
-1. Hero with tool GUI/MRI/topomap background images and a foreground workflow SVG animation.
+1. Hero with tool GUI/MRI/topomap background images, a theme toggle, and a foreground workflow SVG animation.
 2. Detailed June 12 workshop programme.
 3. Reproducibility workflow.
 4. BIDS Manager software section.
 5. MEEGqc software section.
 6. Software/documentation links.
+7. Interactive image modal used by the tool galleries.
 
 Organizer context from Felix:
 
@@ -45,9 +46,9 @@ Website repository:
 Main files:
 
 ```text
-index.html      Main landing page content
-styles.css      Visual design, layout, responsive styles, animation
-script.js       Scroll reveal animation
+index.html      Main landing page content and modal markup
+styles.css      Visual design, dark/light themes, layout, responsive styles, animation
+script.js       Scroll reveal animation, theme toggle, interactive image gallery modal
 README.md       Short repository overview
 TESTING.md      Local testing and GitHub Pages instructions
 PROJECT_INIT.md This project context file
@@ -110,6 +111,31 @@ MEGqc software:
 /Users/karelo/PycharmProjects/megqcpython14/MEGqc
 https://github.com/ANCPLabOldenburg/MEGqc
 ```
+
+## Tool Feature Positioning
+
+BIDS Manager should be presented as more than a converter. It is an interactive raw-to-BIDS curation environment that lets participants understand the acquisition before conversion.
+
+Key BIDS Manager points to preserve:
+
+- Scans raw DICOM folders into a metadata inventory before conversion.
+- Shows studies, subjects, sessions, source folders, sequence names, acquisition times, file counts, series identifiers, inferred modalities, repeated acquisitions, and proposed BIDS names.
+- Allows correction of subject labels, sessions, suffix mapping, inclusion/exclusion decisions, repeated runs, mixed-session folders, and protocol-specific patterns through the GUI.
+- Provides general and specific filters by modality, subject, session, and sequence.
+- Lets users preview the future BIDS dataset as text and as a tree before running conversion.
+- Bridges conversion and post-conversion review with metadata editing, JSON/TSV review, graph views, and imaging/slice inspection.
+- Advertisement framing: this is a software-guided curation workflow, not a manual BIDS naming walkthrough.
+
+MEEGqc should be presented as a reproducible QA/QC framework, with QA and QC clearly separated:
+
+- **QA / quality assessment:** measures and profiles data quality evidence.
+- **QC / quality control:** supports documented decisions based on that evidence.
+- QA metrics include STD, peak-to-peak amplitude, PSD, ECG/EOG contamination, muscle artifacts, stimulus checks, and MEG head-motion summaries when available.
+- Outputs include interactive subject HTML reports, metric TSV tables, JSON summaries, BIDS derivatives, group QA/QC reports, and multi-sample comparisons.
+- Supports GUI, command-line, and programmatic workflows.
+- Supports MEG, standalone EEG, and EEG channels embedded in MEG recordings.
+- EEG support includes BIDS channel-type correction, EEG montage handling, re-referencing, EEG-specific muscle frequency bands, and EEG report tabs.
+- Do not display the GQI image. It is acceptable to discuss configurable criteria or summary outputs, but the page should not visually feature the old GQI screenshot.
 
 ## Documentation Sources And Visual Assets
 
@@ -223,10 +249,12 @@ assets/indos-logo-white.png
 
 ## Design Notes
 
-- The page uses a dark BrainHack-inspired visual style.
+- The page supports dark and light themes through the header theme toggle. The selected theme is stored in `localStorage` under `indos-theme`.
 - The hero includes overlapping software screenshots/GIFs from real tool GUIs, MRI/slice animations, and one MEEGqc topomap animation.
-- The animation is a foreground workflow SVG above the title, representing `Raw data -> BIDS curation -> QA metrics -> Reports`.
+- The animation is a foreground workflow SVG above the title, representing `Raw acquisition -> Acquisition audit -> BIDS curation -> QA: measure -> QC: decide -> Reports`.
+- The animation deliberately separates QA and QC: QA is the evidence/measurement step; QC is the decision/documentation step.
 - The workflow animation uses inline SVG `<animate>` and `<animateMotion>` elements because the earlier CSS-only neural-network style was unclear and not reliably visible.
+- Tool screenshots and GIFs are interactive. Figures with `.media-frame` or inside `.media-strip` open in a modal. Add `data-title` and `data-detail` to a figure when a custom modal explanation is needed.
 - Text was intentionally reduced from earlier versions because the original hero and section headings were too large.
 - The programme must remain first after the hero. Tool-selling sections come after the detailed programme.
 - Keep typography restrained: avoid hero-scale text inside cards or compact sections.

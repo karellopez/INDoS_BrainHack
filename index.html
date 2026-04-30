@@ -22,6 +22,7 @@
         <a href="#meegqc">MEEGqc</a>
         <a href="#links">Links</a>
       </nav>
+      <button class="theme-toggle" type="button" aria-pressed="false">Light theme</button>
     </header>
 
     <main id="top">
@@ -36,39 +37,66 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          <svg class="workflow-animation" viewBox="0 0 760 170" role="img" aria-label="Animated raw data to BIDS to quality control workflow">
+          <svg class="workflow-animation" viewBox="0 0 860 230" role="img" aria-label="Animated raw data to BIDS curation, quality assessment, quality control, and reporting workflow">
             <defs>
               <filter id="workflow-glow" x="-40%" y="-40%" width="180%" height="180%">
                 <feGaussianBlur stdDeviation="2.4" result="blur"></feGaussianBlur>
                 <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
               </filter>
-              <path id="workflow-path" d="M84 86 C168 28 234 28 318 86 S468 144 552 86 S668 28 722 82"></path>
+              <path id="workflow-main-path" d="M70 112 C140 40 214 44 274 112 S414 184 484 112 S640 40 790 112"></path>
+              <path id="workflow-audit-path" d="M68 112 C142 118 164 64 226 64 C260 64 278 86 296 108"></path>
+              <path id="workflow-qc-path" d="M486 112 C548 86 594 86 650 114 C700 140 736 142 790 112"></path>
             </defs>
-            <use class="workflow-line" href="#workflow-path"></use>
-            <g class="workflow-node" transform="translate(54 56)">
-              <path d="M0 12 h46 v42 H0z M0 12 l8 -10 h46 l-8 10" class="node-icon"></path>
-              <text x="23" y="80">Raw data</text>
+            <use class="workflow-line main-line" href="#workflow-main-path"></use>
+            <use class="workflow-line audit-line" href="#workflow-audit-path"></use>
+            <use class="workflow-line qc-line" href="#workflow-qc-path"></use>
+
+            <g class="workflow-node raw-node" transform="translate(32 78)">
+              <path d="M4 17 h52 v50 H4z M4 17 l10 -12 h52 l-10 12 M16 31 h30 M16 44 h22" class="node-icon"></path>
+              <text x="30" y="92">Raw acquisition</text>
             </g>
-            <g class="workflow-node" transform="translate(284 54)">
-              <path d="M0 0 h62 v52 H0z M11 13 h40 M11 26 h40 M11 39 h28" class="node-icon"></path>
-              <text x="31" y="82">BIDS curation</text>
+            <g class="workflow-node audit-node" transform="translate(196 28)">
+              <path d="M0 8 h64 v52 H0z M10 22 h44 M10 34 h28 M10 46 h38 M51 45 l11 11 M55 39 a12 12 0 1 0 -1 0" class="node-icon"></path>
+              <text x="32" y="86">Acquisition audit</text>
             </g>
-            <g class="workflow-node" transform="translate(520 54)">
-              <path d="M6 40 C18 10 43 10 56 40 M13 40 C24 26 38 26 50 40 M30 40 v-30" class="node-icon"></path>
-              <text x="31" y="82">QA metrics</text>
+            <g class="workflow-node bids-node" transform="translate(302 78)">
+              <path d="M3 6 h56 v60 H3z M14 22 h34 M14 35 h34 M14 48 h23 M0 66 h62" class="node-icon"></path>
+              <text x="31" y="92">BIDS curation</text>
             </g>
-            <g class="workflow-node" transform="translate(680 54)">
-              <path d="M0 0 h50 v54 H0z M9 15 h32 M9 28 h24 M9 41 h32" class="node-icon"></path>
-              <text x="25" y="82">Reports</text>
+            <g class="workflow-node qa-node" transform="translate(456 78)">
+              <path d="M4 57 C15 18 47 18 58 57 M13 57 C25 39 39 39 50 57 M31 57 v-42 M17 22 l14 -12 l14 12" class="node-icon"></path>
+              <text x="31" y="92">QA: measure</text>
             </g>
+            <g class="workflow-node qc-node" transform="translate(620 132)">
+              <path d="M4 8 h54 v50 H4z M16 24 l9 9 l20 -21 M16 45 h30" class="node-icon"></path>
+              <text x="31" y="86">QC: decide</text>
+            </g>
+            <g class="workflow-node report-node" transform="translate(770 78)">
+              <path d="M0 0 h56 v66 H0z M12 16 h32 M12 30 h26 M12 44 h32 M40 0 v16 h16" class="node-icon"></path>
+              <text x="28" y="92">Reports</text>
+            </g>
+
+            <g class="mini-graph" aria-hidden="true">
+              <circle cx="388" cy="43" r="5"></circle>
+              <circle cx="428" cy="32" r="5"></circle>
+              <circle cx="468" cy="49" r="5"></circle>
+              <circle cx="412" cy="67" r="5"></circle>
+              <path d="M388 43 L428 32 L468 49 M388 43 L412 67 L468 49 M428 32 L412 67"></path>
+            </g>
+
             <circle class="workflow-packet" r="7" filter="url(#workflow-glow)">
-              <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
-                <mpath href="#workflow-path"></mpath>
+              <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#workflow-main-path"></mpath>
               </animateMotion>
             </circle>
             <circle class="workflow-packet packet-two" r="5" filter="url(#workflow-glow)">
-              <animateMotion dur="5s" begin="1.7s" repeatCount="indefinite" rotate="auto">
-                <mpath href="#workflow-path"></mpath>
+              <animateMotion dur="4.8s" begin="0.9s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#workflow-audit-path"></mpath>
+              </animateMotion>
+            </circle>
+            <circle class="workflow-packet packet-three" r="5" filter="url(#workflow-glow)">
+              <animateMotion dur="5.4s" begin="2s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#workflow-qc-path"></mpath>
               </animateMotion>
             </circle>
           </svg>
@@ -279,7 +307,7 @@
         </div>
 
         <div class="feature-layout">
-          <figure class="media-frame large-media">
+          <figure class="media-frame large-media" data-title="BIDS Manager converter workspace" data-detail="The converter gives a single workspace for scanning raw DICOM folders, inspecting acquisition metadata, editing BIDS-relevant fields, configuring filters, previewing the final dataset tree, and launching conversion with a log trail.">
             <img src="assets/bids-manager/gui-visual.png" alt="BIDS Manager GUI showing the converter interface">
             <figcaption>BIDS Manager GUI: a software-guided workflow for reviewing raw data before conversion.</figcaption>
           </figure>
@@ -287,65 +315,82 @@
           <div class="feature-list" aria-label="BIDS Manager highlights">
             <article class="feature-item">
               <span class="feature-index">01</span>
-              <h3>Acquisition audit before conversion</h3>
+              <h3>Pre-conversion acquisition audit</h3>
               <p>
-                Review subjects, studies, sessions, source folders, sequence names, series UIDs, acquisition times, repeats,
-                inferred modalities, and file counts before committing to a BIDS structure.
+                BIDS Manager scans DICOM folders into an inventory of studies, subjects, sessions, source folders,
+                sequence names, acquisition times, file counts, series identifiers, inferred modalities, and proposed
+                BIDS names before anything is converted.
               </p>
             </article>
             <article class="feature-item">
               <span class="feature-index">02</span>
-              <h3>Interactive curation, not manual folder editing</h3>
+              <h3>Interactive curation controls</h3>
               <p>
-                Adjust BIDS-relevant names and metadata, apply exclusion rules, adapt suffix patterns to local protocols,
-                detect repeats, and handle mixed-session folders in a guided interface.
+                Users can correct subject labels and sessions, adapt the suffix dictionary to local protocols, apply
+                general or subject-specific filters, keep only the last repeated acquisitions, and exclude irrelevant
+                patterns without editing folders by hand.
               </p>
             </article>
             <article class="feature-item">
               <span class="feature-index">03</span>
-              <h3>Preview the future BIDS dataset</h3>
+              <h3>Preview, convert, then inspect</h3>
               <p>
-                Inspect planned BIDS paths in text and tree views before conversion, reducing avoidable mistakes and making
-                decisions easier to explain later.
+                The future BIDS structure can be inspected as text and as a tree before conversion. After conversion, the
+                editor supports metadata, JSON and TSV review, graph views, NIfTI inspection, and slice-based visual checks.
               </p>
             </article>
           </div>
         </div>
 
+        <div class="capability-grid" aria-label="BIDS Manager detailed capabilities">
+          <article>
+            <h3>Detect acquisition problems early</h3>
+            <p>Repeated runs, mixed sessions, ambiguous sequence names, inconsistent IDs, and unexpected file counts become visible before conversion, when they are still cheap to correct.</p>
+          </article>
+          <article>
+            <h3>Make curation decisions explicit</h3>
+            <p>Include/exclude choices, suffix mapping, naming corrections, and session decisions are handled in the interface rather than being scattered across manual notes and ad hoc scripts.</p>
+          </article>
+          <article>
+            <h3>Bridge conversion and dataset review</h3>
+            <p>BIDS Manager does not stop at conversion: it also provides dataset navigation, metadata editing, graph views, and visual inspection tools for BIDS-compliant datasets.</p>
+          </article>
+        </div>
+
         <div class="media-strip dense-media" aria-label="BIDS Manager screenshots and animations">
-          <figure>
+          <figure data-title="3D and visual inspection" data-detail="The editor adds visual inspection to the curation workflow, helping users look beyond folder names and check anatomical or imaging content inside BIDS datasets.">
             <img src="assets/bids-manager/intro-3d.gif" alt="BIDS Manager 3D viewer animation">
             <figcaption>3D and visual inspection tools</figcaption>
           </figure>
-          <figure>
+          <figure data-title="Scanned metadata inventory" data-detail="The scanned metadata table summarizes study labels, subject IDs, sessions, sequence names, proposed BIDS names, acquisition timing, repeats, modality inference, and file counts before conversion.">
             <img src="assets/bids-manager/scanned-metadata.png" alt="BIDS Manager scanned metadata table">
             <figcaption>Scanned metadata before conversion</figcaption>
           </figure>
-          <figure>
+          <figure data-title="General modality filter" data-detail="General filters organize detected acquisitions by BIDS sequence type so users can include, exclude, or review whole acquisition classes consistently.">
             <img src="assets/bids-manager/filter-general.png" alt="BIDS Manager general filter view">
             <figcaption>General modality filter</figcaption>
           </figure>
-          <figure>
+          <figure data-title="Specific acquisition structure" data-detail="Specific filters expose subject, session, and sequence-level structure, which is useful when only part of a dataset needs correction or exclusion.">
             <img src="assets/bids-manager/filter-specific.png" alt="BIDS Manager specific filter view">
             <figcaption>Subject/session/sequence structure</figcaption>
           </figure>
-          <figure>
+          <figure data-title="BIDS tree preview" data-detail="The preview tree shows the planned BIDS folders and filenames before conversion, making output structure review possible before irreversible downstream work begins.">
             <img src="assets/bids-manager/preview-tree.png" alt="BIDS Manager preview tree">
             <figcaption>BIDS tree preview</figcaption>
           </figure>
-          <figure>
+          <figure data-title="Metadata editing" data-detail="The editor gives direct access to BIDS metadata and tabular files so curation continues after conversion without leaving the software environment.">
             <img src="assets/bids-manager/editor-metadata.png" alt="BIDS Manager metadata editor">
             <figcaption>Metadata editing</figcaption>
           </figure>
-          <figure>
+          <figure data-title="JSON sidecar review" data-detail="JSON sidecars can be opened and reviewed in context, supporting transparent correction of metadata that downstream BIDS Apps depend on.">
             <img src="assets/bids-manager/editor-json.png" alt="BIDS Manager JSON editor">
             <figcaption>JSON sidecar review</figcaption>
           </figure>
-          <figure>
+          <figure data-title="Dataset graph view" data-detail="Graph views help users understand dataset structure and relationships visually, which is especially useful for complex or multimodal BIDS datasets.">
             <img src="assets/bids-manager/editor-graph.png" alt="BIDS Manager graph view">
             <figcaption>Dataset graph view</figcaption>
           </figure>
-          <figure>
+          <figure data-title="Interactive slice review" data-detail="Slice review helps catch visual problems in imaging data and keeps dataset inspection close to metadata and file-structure review.">
             <img src="assets/bids-manager/slices.gif" alt="BIDS Manager slice viewer animation">
             <figcaption>Interactive slice review</figcaption>
           </figure>
@@ -367,7 +412,7 @@
         </div>
 
         <div class="feature-layout reverse">
-          <figure class="media-frame large-media">
+          <figure class="media-frame large-media" data-title="MEEGqc graphical workflow" data-detail="MEEGqc exposes the same reproducible QA/QC pipeline through a GUI, command-line use, and programmatic workflows, making it practical for both training sessions and scalable dataset processing.">
             <img src="assets/meegqc/gui-main-dark.png" alt="MEEGqc dark GUI main window">
             <figcaption>MEEGqc GUI: the same QA/QC logic can be used through graphical, command-line, and programmatic workflows.</figcaption>
           </figure>
@@ -375,53 +420,68 @@
           <div class="feature-list" aria-label="MEEGqc highlights">
             <article class="feature-item">
               <span class="feature-index">01</span>
-              <h3>Structured metrics instead of subjective notes</h3>
+              <h3>QA: measure the signal</h3>
               <p>
-                Compute signal variability, flat or noisy channels, peak-to-peak behavior, PSD, ECG/EOG contamination,
-                muscle artifacts, and MEG head-motion summaries when available.
+                Quality assessment means producing evidence: STD, peak-to-peak amplitudes, PSD, ECG and EOG
+                contamination, muscle artifacts, stimulus checks, and MEG head-motion summaries when available.
               </p>
             </article>
             <article class="feature-item">
               <span class="feature-index">02</span>
-              <h3>Interactive reports and BIDS derivatives</h3>
+              <h3>QC: support documented decisions</h3>
               <p>
-                Generate per-subject HTML reports for inspection and machine-readable outputs for documentation, automation,
-                and downstream processing.
+                Quality control is the decision layer: reports, summaries, configurable criteria, and metric-specific
+                explanations help users decide what needs review, rejection, repair, or documentation.
               </p>
             </article>
             <article class="feature-item">
               <span class="feature-index">03</span>
-              <h3>Transparent decisions at scale</h3>
+              <h3>Reports, derivatives, and cohorts</h3>
               <p>
-                Use group reports and configurable QC criteria to compare quality evidence across datasets instead of
-                hiding decisions in manual judgement.
+                MEEGqc writes interactive subject reports, machine-readable BIDS derivatives, JSON summaries, group QA/QC
+                reports, and multi-sample comparisons so quality evidence can be reused and audited.
               </p>
             </article>
           </div>
         </div>
 
+        <div class="capability-grid meegqc-capabilities" aria-label="MEEGqc detailed capabilities">
+          <article>
+            <h3>QA is assessment</h3>
+            <p>QA profiles the data: where the signal is noisy, flat, spectrally abnormal, contaminated by ECG/EOG, affected by muscle activity, or inconsistent across epochs and sensors.</p>
+          </article>
+          <article>
+            <h3>QC is decision support</h3>
+            <p>QC turns the QA evidence into traceable decisions through compact summaries, thresholds, report text, tables, and dataset-level comparisons that can be revisited later.</p>
+          </article>
+          <article>
+            <h3>MEG and EEG in one framework</h3>
+            <p>The workflow supports MEG, standalone EEG, and EEG channels embedded in MEG recordings, including BIDS channel-type correction, EEG montage handling, re-referencing, and EEG-specific muscle bands.</p>
+          </article>
+        </div>
+
         <div class="media-strip dense-media" aria-label="MEEGqc screenshots and report examples">
-          <figure>
+          <figure data-title="Light GUI workflow" data-detail="The GUI lowers the barrier for practical workshops while preserving the same underlying settings and reproducible processing logic used by command-line runs.">
             <img src="assets/meegqc/gui-main-light.png" alt="MEEGqc light GUI main window">
             <figcaption>GUI workflow</figcaption>
           </figure>
-          <figure>
+          <figure data-title="Report organization" data-detail="Interactive reports organize metrics into tabs, separating channel types and metric families so users can move from overview to evidence without losing context.">
             <img src="assets/meegqc/report-tabs.gif" alt="MEEGqc report tabs">
             <figcaption>Report organization</figcaption>
           </figure>
-          <figure>
+          <figure data-title="ECG contamination review" data-detail="ECG views estimate cardiac contamination, show affected channels, and help decide whether contamination is local, global, or tied to reference-signal quality.">
             <img src="assets/meegqc/ecg-highest.gif" alt="MEEGqc ECG affected channel report">
             <figcaption>ECG contamination review</figcaption>
           </figure>
-          <figure>
+          <figure data-title="PSD inspection" data-detail="PSD reports expose frequency-domain quality problems such as line noise, narrowband interference, and broad spectral burden across channels.">
             <img src="assets/meegqc/psd-welch.gif" alt="MEEGqc PSD Welch report">
             <figcaption>PSD inspection</figcaption>
           </figure>
-          <figure>
+          <figure data-title="Sensor-level STD metrics" data-detail="Standard-deviation views reveal flat channels, noisy channels, and epoch-level instability, giving users a direct signal-variability profile before exclusion decisions.">
             <img src="assets/meegqc/std-cap.gif" alt="MEEGqc standard deviation cap plot">
             <figcaption>Sensor-level STD metrics</figcaption>
           </figure>
-          <figure>
+          <figure data-title="Group-level QA reports" data-detail="Group reports aggregate quality profiles across subjects, tasks, metrics, and channel types so cohort-level outliers and systematic acquisition effects are easier to detect.">
             <img src="assets/meegqc/group-summary.gif" alt="MEEGqc group summary report">
             <figcaption>Group-level QA reports</figcaption>
           </figure>
@@ -458,6 +518,18 @@
       <p>INDoS BrainHack workshops · BIDS Manager · MEEGqc</p>
       <a href="#top">Back to top</a>
     </footer>
+
+    <div class="gallery-modal" id="gallery-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" aria-label="Close image preview">Close</button>
+      <div class="modal-panel">
+        <img id="modal-image" alt="">
+        <div class="modal-copy">
+          <p class="section-kicker">Feature preview</p>
+          <h2 id="modal-title"></h2>
+          <p id="modal-description"></p>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

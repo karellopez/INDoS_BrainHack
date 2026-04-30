@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="INDoS BrainHack workshops on interactive raw-to-BIDS curation with BIDS Manager and reproducible MEG/EEG quality control with MEEGqc."
+    >
+    <title>INDoS BrainHack Workshops | BIDS Manager and MEEGqc</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="INDoS BrainHack Workshops">
+        <img class="brand-logo" src="assets/indos-logo-white.png" alt="" aria-hidden="true">
+        <span>INDoS BrainHack</span>
+      </a>
+      <nav class="nav-links" aria-label="Page sections">
+        <a href="#programme">Programme</a>
+        <a href="#bids-manager">BIDS Manager</a>
+        <a href="#meegqc">MEEGqc</a>
+        <a href="#links">Links</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" aria-hidden="true">
+          <img class="hero-shot shot-a" src="assets/bids-manager/gui-visual.png" alt="">
+          <img class="hero-shot shot-b" src="assets/meegqc/gui-main-dark.png" alt="">
+          <img class="hero-shot shot-c" src="assets/bids-manager/scanned-metadata.png" alt="">
+          <img class="hero-shot shot-d" src="assets/meegqc/report-tabs.gif" alt="">
+          <img class="hero-shot shot-e" src="assets/bids-manager/slices.gif" alt="">
+          <img class="hero-shot shot-f" src="assets/meegqc/psd-topomap.gif" alt="">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <svg class="workflow-animation" viewBox="0 0 760 170" role="img" aria-label="Animated raw data to BIDS to quality control workflow">
+            <defs>
+              <filter id="workflow-glow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="2.4" result="blur"></feGaussianBlur>
+                <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+              </filter>
+              <path id="workflow-path" d="M84 86 C168 28 234 28 318 86 S468 144 552 86 S668 28 722 82"></path>
+            </defs>
+            <use class="workflow-line" href="#workflow-path"></use>
+            <g class="workflow-node" transform="translate(54 56)">
+              <path d="M0 12 h46 v42 H0z M0 12 l8 -10 h46 l-8 10" class="node-icon"></path>
+              <text x="23" y="80">Raw data</text>
+            </g>
+            <g class="workflow-node" transform="translate(284 54)">
+              <path d="M0 0 h62 v52 H0z M11 13 h40 M11 26 h40 M11 39 h28" class="node-icon"></path>
+              <text x="31" y="82">BIDS curation</text>
+            </g>
+            <g class="workflow-node" transform="translate(520 54)">
+              <path d="M6 40 C18 10 43 10 56 40 M13 40 C24 26 38 26 50 40 M30 40 v-30" class="node-icon"></path>
+              <text x="31" y="82">QA metrics</text>
+            </g>
+            <g class="workflow-node" transform="translate(680 54)">
+              <path d="M0 0 h50 v54 H0z M9 15 h32 M9 28 h24 M9 41 h32" class="node-icon"></path>
+              <text x="25" y="82">Reports</text>
+            </g>
+            <circle class="workflow-packet" r="7" filter="url(#workflow-glow)">
+              <animateMotion dur="5s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#workflow-path"></mpath>
+              </animateMotion>
+            </circle>
+            <circle class="workflow-packet packet-two" r="5" filter="url(#workflow-glow)">
+              <animateMotion dur="5s" begin="1.7s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#workflow-path"></mpath>
+              </animateMotion>
+            </circle>
+          </svg>
+          <p class="eyebrow">INDoS BrainHack workshops</p>
+          <h1 id="hero-title">From raw data to reproducible quality evidence</h1>
+          <p class="hero-copy">
+            A software-driven workshop programme for practical neuroimaging reproducibility: curate raw MRI, MEG, and EEG
+            data into BIDS with <strong>BIDS Manager</strong>, then inspect MEG/EEG data quality with <strong>MEEGqc</strong>.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#programme">Read programme</a>
+            <a class="button ghost" href="#links">Software links</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="programme" class="programme-section" aria-labelledby="programme-title">
+        <div class="section-heading">
+          <p class="section-kicker">Workshop programme</p>
+          <h2 id="programme-title">June 12 INDoS traintrack and workshop programme</h2>
+          <p>
+            The INDoS programme is designed as a clear one-day sequence: first organize and curate raw multimodal data
+            into BIDS with BIDS Manager, then inspect MEG/EEG data quality with MEEGqc in the afternoon. A compact
+            BIDS Manager format is included as an optional fallback if the schedule needs a shorter Traintrack slot.
+          </p>
+        </div>
+
+        <div class="schedule-bar" aria-label="June 12 schedule overview">
+          <div>
+            <span class="schedule-date">June 12</span>
+            <strong>Deeper Traintrack</strong>
+            <p>BIDS Manager raw-to-BIDS curation</p>
+          </div>
+          <div>
+            <span class="schedule-date">June 12 afternoon</span>
+            <strong>Practical workshop</strong>
+            <p>MEEGqc reproducible MEG/EEG quality control</p>
+          </div>
+        </div>
+
+        <article class="programme-card featured-session">
+          <div class="programme-meta">
+            <span>June 12</span>
+            <span>Deeper Traintrack</span>
+            <span>1.5 hours</span>
+          </div>
+          <h3>Multimodal raw-to-BIDS curation with BIDS Manager: concepts, workflow, and practice</h3>
+          <p class="programme-pitch">
+            Organizer-ready short description: An extended practical introduction to multimodal raw-to-BIDS curation with
+            BIDS Manager, combining BIDS concepts, pre-conversion acquisition inspection, metadata decisions, and a
+            software-guided workflow for organizing MRI, MEG, and EEG data into reusable BIDS datasets.
+          </p>
+          <p class="programme-summary">
+            Most BIDS workshops explain the standard. This session shows how to actually curate real raw neuroimaging
+            data with BIDS Manager: an interactive software tool that lets users inspect how a dataset was acquired,
+            how it is organized, and what problems need attention before conversion.
+          </p>
+          <div class="programme-detail-grid">
+            <div>
+              <h4>Description</h4>
+              <p>
+                Raw-to-BIDS conversion is often presented as a naming problem, but in practice it is a curation problem.
+                Real datasets contain repeated acquisitions, inconsistent folder structures, ambiguous sessions,
+                acquisition-time differences, scanner-specific sequence names, missing or confusing metadata, and
+                modality-specific details that are difficult to track manually.
+              </p>
+              <p>
+                Before conversion, BIDS Manager scans the raw data and presents an interactive view of the dataset:
+                subjects, studies, sessions, source folders, sequence names, acquisition times, file counts, series
+                identifiers, repeated acquisitions, inferred modalities, and proposed BIDS names.
+              </p>
+              <p>
+                The 1.5-hour format allows time to discuss why curation decisions matter, how metadata affects downstream
+                analysis, and how a curated BIDS dataset becomes a stronger foundation for validation, sharing, analysis,
+                and quality control.
+              </p>
+            </div>
+            <div>
+              <h4>Learning objectives</h4>
+              <ul>
+                <li>Understand why raw-to-BIDS conversion is a curation workflow, not only a file-renaming step.</li>
+                <li>Learn how BIDS Manager reveals dataset organization and acquisition structure before conversion.</li>
+                <li>See how interactive inspection can catch acquisition and organization problems earlier than manual workflows.</li>
+                <li>Understand how MRI, MEG, and EEG data can be approached within one BIDS curation framework.</li>
+                <li>Connect pre-conversion curation decisions to validation, sharing, analysis, and quality control.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="target-line">
+            <strong>Target audience:</strong> Beginner to intermediate participants who want a practical,
+            software-supported route into reproducible neuroimaging data curation.
+          </p>
+          <p class="tag-line">Tags: BIDS · raw-to-BIDS · data curation · MRI · MEG · EEG · DICOM · metadata · reproducibility · neuroimaging</p>
+        </article>
+
+        <div class="programme-pair">
+          <article class="programme-card secondary-session">
+            <div class="programme-meta">
+              <span>Optional fallback format</span>
+              <span>Traintrack</span>
+              <span>45 minutes</span>
+            </div>
+            <h3>Fast-track multimodal BIDS curation with BIDS Manager</h3>
+            <p class="programme-pitch">
+              Organizer-ready short description: A concise, practical overview of BIDS Manager showing how raw
+              neuroimaging data can be inspected, organized, checked, previewed, and prepared for multimodal BIDS
+              conversion in a software-guided workflow.
+            </p>
+            <p class="programme-summary">
+              A fast practical demonstration of BIDS Manager: an interactive tool that lets users inspect raw dataset
+              organization, acquisition details, potential problems, and the future BIDS structure before running conversion.
+            </p>
+            <p>
+              Participants will see the essential workflow: scan the raw data, review the acquisition inventory, inspect
+              subjects, sessions, modalities and sequences, identify repeated or problematic acquisitions, edit
+              BIDS-relevant fields, preview the output structure, and prepare the dataset for conversion.
+            </p>
+            <h4>Learning objectives</h4>
+            <ul>
+              <li>Understand what BIDS Manager is and why it is different from a manual BIDS walkthrough.</li>
+              <li>Follow the core raw-to-BIDS curation steps in an interactive workflow.</li>
+              <li>Learn how acquisition details, metadata, and proposed BIDS names can be inspected before conversion.</li>
+              <li>See how multimodal MRI, MEG, and EEG datasets can be organized consistently.</li>
+            </ul>
+            <p class="target-line">
+              <strong>Target audience:</strong> Participants who want a concise, high-impact introduction to
+              software-supported multimodal BIDS curation.
+            </p>
+            <p class="tag-line">Tags: BIDS · raw-to-BIDS · data curation · MRI · MEG · EEG · reproducibility · metadata</p>
+          </article>
+
+          <article class="programme-card">
+            <div class="programme-meta">
+              <span>June 12 afternoon</span>
+              <span>Workshop / practical session</span>
+              <span>Duration to be confirmed</span>
+            </div>
+            <h3>Reproducible MEG/EEG quality control with MEEGqc</h3>
+            <p class="programme-pitch">
+              Organizer-ready short description: A practical introduction to MEEGqc for reproducible MEG/EEG quality
+              assessment, interactive reports, machine-readable BIDS derivatives, group summaries, and transparent
+              quality-control decisions.
+            </p>
+            <p class="programme-summary">
+              MEEGqc turns quality control from an informal visual check into a reproducible evidence-based workflow:
+              automated MEG/EEG metrics, interactive reports, machine-readable derivatives, group summaries, and
+              configurable quality-control outputs.
+            </p>
+            <p>
+              The workshop shows how MEEGqc computes structured quality metrics, generates interactive HTML reports for
+              human inspection, and writes machine-readable BIDS derivatives that can be reused for documentation,
+              downstream processing, and cohort-level summaries.
+            </p>
+            <h4>Learning objectives</h4>
+            <ul>
+              <li>Understand why reproducible M/EEG QA/QC requires structured evidence, not only visual inspection.</li>
+              <li>Learn what MEEGqc measures and how its outputs support transparent decisions.</li>
+              <li>Interpret reports, metric tables, JSON summaries, and dataset-level quality summaries.</li>
+              <li>Understand how EEG and MEG quality-control workflows can be handled in a common framework.</li>
+              <li>See how MEEGqc complements BIDS Manager in a complete raw-data-to-QC workflow.</li>
+            </ul>
+            <p class="target-line">
+              <strong>Target audience:</strong> Participants who want transparent, scalable, and reproducible quality
+              assessment and quality-control workflows for MEG and EEG data.
+            </p>
+            <p class="tag-line">Tags: quality control · quality assessment · MEG · EEG · M/EEG · BIDS derivatives · HTML reports · automated metrics · reproducibility</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="workflow-section" aria-labelledby="workflow-title">
+        <div class="section-heading compact">
+          <p class="section-kicker">Coherent workflow</p>
+          <h2 id="workflow-title">One reproducibility chain</h2>
+        </div>
+        <div class="workflow">
+          <div class="workflow-step">
+            <span>1</span>
+            <h3>Inspect raw acquisition</h3>
+            <p>See subjects, sessions, sequences, file counts, repeats, timing, and organization before conversion.</p>
+          </div>
+          <div class="workflow-step">
+            <span>2</span>
+            <h3>Curate into BIDS</h3>
+            <p>Review metadata, adjust naming, exclude irrelevant sequences, preview the tree, and convert with context.</p>
+          </div>
+          <div class="workflow-step">
+            <span>3</span>
+            <h3>Run reproducible QA/QC</h3>
+            <p>Generate metrics, reports, derivatives, group summaries, and transparent quality-control evidence.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="bids-manager" class="tool-section tool-bids" aria-labelledby="bids-title">
+        <div class="section-heading tool-heading">
+          <img class="tool-logo bids-logo" src="assets/bids-manager/software-logo.png" alt="BIDS Manager logo">
+          <div>
+            <p class="section-kicker">Raw-to-BIDS curation software</p>
+            <h2 id="bids-title">BIDS Manager shows the dataset before conversion</h2>
+            <p>
+              To our knowledge, BIDS Manager is the only interactive raw-to-BIDS tool that gives users this kind of
+              pre-conversion acquisition overview for BIDS curation. It is a curation environment where users can inspect
+              the raw dataset, identify acquisition or organization problems, adjust metadata and naming decisions, preview
+              the future BIDS structure, and then run a more controlled conversion workflow.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-layout">
+          <figure class="media-frame large-media">
+            <img src="assets/bids-manager/gui-visual.png" alt="BIDS Manager GUI showing the converter interface">
+            <figcaption>BIDS Manager GUI: a software-guided workflow for reviewing raw data before conversion.</figcaption>
+          </figure>
+
+          <div class="feature-list" aria-label="BIDS Manager highlights">
+            <article class="feature-item">
+              <span class="feature-index">01</span>
+              <h3>Acquisition audit before conversion</h3>
+              <p>
+                Review subjects, studies, sessions, source folders, sequence names, series UIDs, acquisition times, repeats,
+                inferred modalities, and file counts before committing to a BIDS structure.
+              </p>
+            </article>
+            <article class="feature-item">
+              <span class="feature-index">02</span>
+              <h3>Interactive curation, not manual folder editing</h3>
+              <p>
+                Adjust BIDS-relevant names and metadata, apply exclusion rules, adapt suffix patterns to local protocols,
+                detect repeats, and handle mixed-session folders in a guided interface.
+              </p>
+            </article>
+            <article class="feature-item">
+              <span class="feature-index">03</span>
+              <h3>Preview the future BIDS dataset</h3>
+              <p>
+                Inspect planned BIDS paths in text and tree views before conversion, reducing avoidable mistakes and making
+                decisions easier to explain later.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <div class="media-strip dense-media" aria-label="BIDS Manager screenshots and animations">
+          <figure>
+            <img src="assets/bids-manager/intro-3d.gif" alt="BIDS Manager 3D viewer animation">
+            <figcaption>3D and visual inspection tools</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bids-manager/scanned-metadata.png" alt="BIDS Manager scanned metadata table">
+            <figcaption>Scanned metadata before conversion</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bids-manager/filter-general.png" alt="BIDS Manager general filter view">
+            <figcaption>General modality filter</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bids-manager/filter-specific.png" alt="BIDS Manager specific filter view">
+            <figcaption>Subject/session/sequence structure</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bids-manager/preview-tree.png" alt="BIDS Manager preview tree">
+            <figcaption>BIDS tree preview</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bids-manager/editor-metadata.png" alt="BIDS Manager metadata editor">
+            <figcaption>Metadata editing</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bids-manager/editor-json.png" alt="BIDS Manager JSON editor">
+            <figcaption>JSON sidecar review</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bids-manager/editor-graph.png" alt="BIDS Manager graph view">
+            <figcaption>Dataset graph view</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/bids-manager/slices.gif" alt="BIDS Manager slice viewer animation">
+            <figcaption>Interactive slice review</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="meegqc" class="tool-section tool-meegqc" aria-labelledby="meegqc-title">
+        <div class="section-heading tool-heading">
+          <img class="tool-logo meegqc-logo" src="assets/meegqc/software-logo.png" alt="MEEGqc logo">
+          <div>
+            <p class="section-kicker">MEG/EEG quality-control software</p>
+            <h2 id="meegqc-title">MEEGqc turns visual QC into reproducible evidence</h2>
+            <p>
+              MEEGqc is a BIDS-aligned toolbox for reproducible MEG and EEG quality assessment and quality-control
+              reporting. It computes structured quality metrics, generates interactive reports, writes machine-readable
+              derivatives, and supports transparent summaries across recordings and datasets.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-layout reverse">
+          <figure class="media-frame large-media">
+            <img src="assets/meegqc/gui-main-dark.png" alt="MEEGqc dark GUI main window">
+            <figcaption>MEEGqc GUI: the same QA/QC logic can be used through graphical, command-line, and programmatic workflows.</figcaption>
+          </figure>
+
+          <div class="feature-list" aria-label="MEEGqc highlights">
+            <article class="feature-item">
+              <span class="feature-index">01</span>
+              <h3>Structured metrics instead of subjective notes</h3>
+              <p>
+                Compute signal variability, flat or noisy channels, peak-to-peak behavior, PSD, ECG/EOG contamination,
+                muscle artifacts, and MEG head-motion summaries when available.
+              </p>
+            </article>
+            <article class="feature-item">
+              <span class="feature-index">02</span>
+              <h3>Interactive reports and BIDS derivatives</h3>
+              <p>
+                Generate per-subject HTML reports for inspection and machine-readable outputs for documentation, automation,
+                and downstream processing.
+              </p>
+            </article>
+            <article class="feature-item">
+              <span class="feature-index">03</span>
+              <h3>Transparent decisions at scale</h3>
+              <p>
+                Use group reports and configurable QC criteria to compare quality evidence across datasets instead of
+                hiding decisions in manual judgement.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <div class="media-strip dense-media" aria-label="MEEGqc screenshots and report examples">
+          <figure>
+            <img src="assets/meegqc/gui-main-light.png" alt="MEEGqc light GUI main window">
+            <figcaption>GUI workflow</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/meegqc/report-tabs.gif" alt="MEEGqc report tabs">
+            <figcaption>Report organization</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/meegqc/ecg-highest.gif" alt="MEEGqc ECG affected channel report">
+            <figcaption>ECG contamination review</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/meegqc/psd-welch.gif" alt="MEEGqc PSD Welch report">
+            <figcaption>PSD inspection</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/meegqc/std-cap.gif" alt="MEEGqc standard deviation cap plot">
+            <figcaption>Sensor-level STD metrics</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/meegqc/group-summary.gif" alt="MEEGqc group summary report">
+            <figcaption>Group-level QA reports</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="links" class="links-section" aria-labelledby="links-title">
+        <div class="section-heading compact">
+          <p class="section-kicker">Software and documentation</p>
+          <h2 id="links-title">Open-source tools used in the workshops</h2>
+        </div>
+        <div class="link-grid">
+          <a class="resource-link" href="https://github.com/ANCPLabOldenburg/BIDS-Manager" target="_blank" rel="noopener noreferrer">
+            <span>BIDS Manager repository</span>
+            <strong>github.com/ANCPLabOldenburg/BIDS-Manager</strong>
+          </a>
+          <a class="resource-link" href="https://ancplaboldenburg.github.io/bids_manager_documentation/" target="_blank" rel="noopener noreferrer">
+            <span>BIDS Manager documentation</span>
+            <strong>ancplaboldenburg.github.io/bids_manager_documentation</strong>
+          </a>
+          <a class="resource-link" href="https://github.com/ANCPLabOldenburg/MEGqc" target="_blank" rel="noopener noreferrer">
+            <span>MEEGqc repository</span>
+            <strong>github.com/ANCPLabOldenburg/MEGqc</strong>
+          </a>
+          <a class="resource-link" href="https://ancplaboldenburg.github.io/megqc_documentation/" target="_blank" rel="noopener noreferrer">
+            <span>MEEGqc documentation</span>
+            <strong>ancplaboldenburg.github.io/megqc_documentation</strong>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>INDoS BrainHack workshops · BIDS Manager · MEEGqc</p>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

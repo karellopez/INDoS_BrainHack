@@ -112,6 +112,19 @@ a {
   white-space: nowrap;
 }
 
+.brand-text {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.05;
+}
+
+.brand-subtitle {
+  color: var(--muted);
+  font-size: 0.82em;
+  font-weight: 720;
+}
+
 .brand-logo {
   width: 132px;
   height: auto;
@@ -1586,6 +1599,11 @@ figcaption {
 @media (max-width: 560px) {
   .brand {
     font-size: 0.86rem;
+    white-space: normal;
+  }
+
+  .brand-text {
+    max-width: 17ch;
   }
 
   .nav-links {

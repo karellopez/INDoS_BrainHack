@@ -257,6 +257,7 @@ assets/indos-logo-white.png
 ## Design Notes
 
 - The page supports dark and light themes through the header theme toggle. The selected theme is stored in `localStorage` under `indos-theme`.
+- The header brand text is `INDoS Train Tracks - OHBM BrainHack`; clicking the INDoS/logo brand opens `https://www.indos-costaction.eu` in a new tab.
 - The hero includes overlapping software screenshots/GIFs from real tool GUIs, MRI/slice animations, and one MEEGqc topomap animation.
 - The animation is a lightweight interactive graph-style SVG above the title, representing `Raw multimodal data -> Scan and inspect -> BIDS conversion -> Quality assessment: Measure -> Quality control: Decision -> Reports`.
 - The animation should keep the full terms `Quality assessment` and `Quality control`, with the explanatory words `Measure` and `Decision`.

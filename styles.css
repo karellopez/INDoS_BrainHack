@@ -113,7 +113,7 @@ a {
 }
 
 .brand-logo {
-  width: 106px;
+  width: 132px;
   height: auto;
   object-fit: contain;
 }
@@ -1602,7 +1602,7 @@ figcaption {
   }
 
   .brand-logo {
-    width: 92px;
+    width: 106px;
   }
 
   .button {

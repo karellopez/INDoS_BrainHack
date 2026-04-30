@@ -228,8 +228,382 @@ a {
 .workflow-animation {
   width: min(760px, 100%);
   height: auto;
-  margin: 0 0 22px;
+  margin: 0 0 6px;
   opacity: 0.96;
+}
+
+.workflow-graph {
+  display: block;
+  width: min(800px, 100%);
+  overflow: visible;
+  cursor: pointer;
+  outline: none;
+}
+
+.workflow-graph:focus-visible {
+  filter: drop-shadow(0 0 0.75rem rgba(77, 227, 255, 0.5));
+}
+
+.workflow-click-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 0 18px;
+  padding: 7px 15px;
+  border: 1px solid rgba(77, 227, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(8, 9, 13, 0.7);
+  color: #eef7ff;
+  font-size: 12px;
+  font-weight: 820;
+  line-height: 1;
+  opacity: 0.82;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.workflow-graph:hover + .workflow-click-hint,
+.workflow-graph:focus-visible + .workflow-click-hint,
+.workflow-click-hint:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.workflow-graph.is-stepping + .workflow-click-hint {
+  opacity: 0;
+}
+
+.workflow-graph .workflow-line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 10 12;
+  animation: workflowDash 3.8s linear infinite;
+}
+
+.workflow-graph .main-line {
+  stroke: rgba(77, 227, 255, 0.58);
+}
+
+.workflow-graph .audit-line {
+  stroke: rgba(184, 244, 109, 0.58);
+  stroke-width: 2.4;
+  animation-duration: 4.4s;
+}
+
+.workflow-graph .qc-line {
+  stroke: rgba(255, 139, 107, 0.64);
+  stroke-width: 2.4;
+  animation-duration: 4.1s;
+}
+
+.workflow-graph .node-icon {
+  fill: rgba(8, 9, 13, 0.62);
+  stroke: rgba(239, 247, 255, 0.88);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.workflow-graph .workflow-node {
+  animation: workflowNodePulse 4.8s ease-in-out infinite;
+}
+
+.workflow-graph.is-stepping .workflow-node {
+  animation: none;
+  opacity: 0.64;
+  transition: opacity 180ms ease, filter 180ms ease;
+}
+
+.workflow-graph .workflow-node.is-active,
+.workflow-graph .workflow-node.is-path-active {
+  opacity: 1;
+  filter:
+    drop-shadow(0 0 10px rgba(184, 244, 109, 0.72))
+    drop-shadow(0 0 24px rgba(77, 227, 255, 0.42));
+}
+
+.workflow-graph .workflow-node.is-active .node-icon,
+.workflow-graph .workflow-node.is-path-active .node-icon {
+  stroke: rgba(255, 255, 255, 0.98);
+  stroke-width: 2.8;
+}
+
+.workflow-graph .scan-node {
+  animation-delay: 0.35s;
+}
+
+.workflow-graph .bids-node {
+  animation-delay: 0.7s;
+}
+
+.workflow-graph .assess-node {
+  animation-delay: 1.05s;
+}
+
+.workflow-graph .control-node {
+  animation-delay: 1.4s;
+}
+
+.workflow-graph .report-node {
+  animation-delay: 1.75s;
+}
+
+.workflow-graph .workflow-node text {
+  fill: #f4f7fb;
+  font-size: 13px;
+  font-weight: 780;
+  text-anchor: middle;
+}
+
+.workflow-mini-graph path {
+  fill: none;
+  stroke: rgba(189, 166, 255, 0.74);
+  stroke-width: 2;
+}
+
+.workflow-mini-graph circle {
+  fill: var(--violet);
+}
+
+.travel-dot {
+  opacity: 0.95;
+  pointer-events: none;
+  filter: drop-shadow(0 0 9px currentColor);
+}
+
+.dot-main {
+  color: var(--lime);
+  fill: var(--lime);
+}
+
+.dot-audit {
+  fill: var(--cyan);
+  color: var(--cyan);
+}
+
+.dot-qc {
+  fill: var(--coral);
+  color: var(--coral);
+}
+
+.workflow-spotlight {
+  fill: currentColor;
+  color: var(--lime);
+  opacity: 0;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 18px currentColor)
+    drop-shadow(0 0 42px rgba(77, 227, 255, 0.55));
+  transition: opacity 160ms ease, r 160ms ease;
+}
+
+.workflow-spotlight.is-visible {
+  opacity: 0.96;
+}
+
+.workflow-flash {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4;
+  opacity: 0;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 18px currentColor)
+    drop-shadow(0 0 44px currentColor);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.workflow-flash.is-flashing {
+  animation: nodeFlash 520ms ease-out both;
+}
+
+.click-brain {
+  opacity: 0;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 160ms ease, transform 220ms ease;
+  filter:
+    drop-shadow(0 0 18px rgba(184, 244, 109, 0.72))
+    drop-shadow(0 0 42px rgba(77, 227, 255, 0.42));
+}
+
+.click-brain.is-visible {
+  opacity: 1;
+}
+
+.click-brain-halo {
+  fill: rgba(7, 10, 16, 0.9);
+  stroke: rgba(77, 227, 255, 0.72);
+  stroke-width: 2;
+  opacity: 0.94;
+  animation: brainHalo 1.2s ease-in-out infinite;
+}
+
+.brain-image {
+  filter: invert(1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.brain-final {
+  opacity: 0;
+}
+
+.click-brain.stage-0 .brain-start,
+.click-brain.stage-1 .brain-start {
+  opacity: 1;
+}
+
+.click-brain.stage-2 .brain-start {
+  opacity: 0.78;
+}
+
+.click-brain.stage-3 .brain-start {
+  opacity: 0.46;
+}
+
+.click-brain.stage-4 .brain-start {
+  opacity: 0.18;
+}
+
+.click-brain.stage-5 .brain-start {
+  opacity: 0;
+}
+
+.click-brain.stage-0 .brain-final,
+.click-brain.stage-1 .brain-final {
+  opacity: 0;
+}
+
+.click-brain.stage-2 .brain-final {
+  opacity: 0.28;
+}
+
+.click-brain.stage-3 .brain-final {
+  opacity: 0.58;
+}
+
+.click-brain.stage-4 .brain-final {
+  opacity: 0.84;
+}
+
+.click-brain.stage-5 .brain-final {
+  opacity: 1;
+}
+
+.click-brain.stage-3,
+.click-brain.stage-4,
+.click-brain.stage-5 {
+  filter:
+    drop-shadow(0 0 20px rgba(184, 244, 109, 0.88))
+    drop-shadow(0 0 54px rgba(77, 227, 255, 0.58))
+    drop-shadow(0 0 28px rgba(255, 139, 107, 0.38));
+}
+
+.click-brain.stage-5 .click-brain-halo {
+  stroke: rgba(255, 139, 107, 0.82);
+}
+
+.brainhack-pop {
+  fill: #ffffff;
+  font-size: 46px;
+  font-weight: 850;
+  letter-spacing: 0;
+  opacity: 0;
+  pointer-events: none;
+  filter:
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.84))
+    drop-shadow(0 0 26px rgba(77, 227, 255, 0.52));
+}
+
+.brainhack-pop.is-visible {
+  animation: brainHackPop 1.2s ease-out both;
+}
+
+[data-theme="light"] .workflow-graph .node-icon {
+  fill: rgba(255, 255, 255, 0.72);
+  stroke: rgba(18, 23, 32, 0.9);
+}
+
+[data-theme="light"] .workflow-graph .workflow-node text {
+  fill: var(--text);
+}
+
+[data-theme="light"] .brain-image {
+  filter: none;
+}
+
+[data-theme="light"] .click-brain-halo {
+  fill: rgba(255, 255, 255, 0.94);
+  stroke: rgba(6, 127, 154, 0.74);
+}
+
+[data-theme="light"] .brainhack-pop {
+  fill: var(--text);
+}
+
+[data-theme="light"] .workflow-click-hint {
+  border-color: rgba(6, 127, 154, 0.42);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text);
+}
+
+@keyframes workflowDash {
+  to {
+    stroke-dashoffset: -44;
+  }
+}
+
+@keyframes workflowNodePulse {
+  0%,
+  100% {
+    opacity: 0.82;
+  }
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes brainHalo {
+  0%,
+  100% {
+    transform: scale(0.92);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes nodeFlash {
+  0% {
+    opacity: 0.95;
+    stroke-width: 6;
+    transform: scale(0.25);
+  }
+  58% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    stroke-width: 1;
+    transform: scale(3.2);
+  }
+}
+
+@keyframes brainHackPop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.84);
+  }
+  18%,
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .workflow-line {
@@ -455,6 +829,102 @@ h1 {
   margin: 0 auto 18px;
 }
 
+.programme-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 0.9fr 1.15fr;
+  gap: 16px;
+  width: min(var(--max), 100%);
+  margin: 0 auto 22px;
+}
+
+.programme-timeline::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 26px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--lime), var(--cyan), var(--coral));
+  opacity: 0.42;
+}
+
+.timeline-item {
+  position: relative;
+  z-index: 1;
+  min-height: 152px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--panel), transparent 20%);
+  padding: 20px;
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.22);
+}
+
+.timeline-item::before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-bottom: 18px;
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 0 1px var(--line), 0 0 28px color-mix(in srgb, var(--lime), transparent 30%);
+}
+
+.timeline-meegqc::before {
+  background: var(--coral);
+  box-shadow: 0 0 0 1px var(--line), 0 0 28px color-mix(in srgb, var(--coral), transparent 30%);
+}
+
+.timeline-time {
+  color: var(--lime);
+  font-size: 0.78rem;
+  font-weight: 820;
+  text-transform: uppercase;
+}
+
+.timeline-meegqc .timeline-time {
+  color: var(--coral);
+}
+
+.timeline-item h3 {
+  margin: 7px 0 8px;
+  font-size: clamp(1.05rem, 1.5vw, 1.32rem);
+  line-height: 1.12;
+}
+
+.timeline-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.programme-group {
+  width: min(var(--max), 100%);
+  margin: 0 auto 18px;
+}
+
+.programme-group-heading {
+  margin-bottom: 18px;
+  border: 1px solid color-mix(in srgb, var(--lime), transparent 72%);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--lime), transparent 94%);
+  padding: clamp(20px, 3vw, 28px);
+}
+
+.programme-group-heading h3 {
+  margin: 0;
+  font-size: clamp(1.18rem, 1.85vw, 1.72rem);
+  line-height: 1.12;
+}
+
+.programme-group-heading p:last-child {
+  max-width: 960px;
+  margin: 14px 0 0;
+  color: var(--muted);
+}
+
 .schedule-bar > div {
   border: 1px solid color-mix(in srgb, var(--lime), transparent 72%);
   border-radius: var(--radius);
@@ -549,6 +1019,24 @@ h1 {
 
 .programme-card p {
   margin: 14px 0 0;
+}
+
+.tutor-line {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 14px !important;
+  border: 1px solid color-mix(in srgb, var(--cyan), transparent 68%);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cyan), transparent 92%);
+  padding: 8px 12px;
+  color: var(--text) !important;
+  font-size: 0.88rem;
+  font-weight: 680;
+}
+
+.tutor-line strong {
+  color: var(--cyan);
 }
 
 .programme-summary {
@@ -1056,11 +1544,12 @@ figcaption {
 
   .workflow-animation {
     width: min(100%, 640px);
-    margin-bottom: 18px;
+    margin-bottom: 6px;
   }
 
   .intro-grid,
   .schedule-bar,
+  .programme-timeline,
   .programme-pair,
   .programme-detail-grid,
   .tool-heading,
@@ -1161,5 +1650,13 @@ figcaption {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .travel-dot,
+  .click-brain,
+  .brainhack-pop,
+  .workflow-flash,
+  .workflow-spotlight {
+    display: none;
   }
 }

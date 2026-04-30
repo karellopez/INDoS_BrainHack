@@ -13,8 +13,8 @@ The page is intended to be hosted as a public URL and shared with the BrainHack 
 
 Current page order:
 
-1. Hero with tool GUI/MRI/topomap background images, a theme toggle, and a foreground workflow SVG animation.
-2. Detailed June 12 workshop programme.
+1. Hero with tool GUI/MRI/topomap background images, a theme toggle, and a lightweight graph-style workflow animation.
+2. Detailed June 12th workshop programme, starting with a clear visual timeline.
 3. Reproducibility workflow.
 4. BIDS Manager software section.
 5. MEEGqc software section.
@@ -31,9 +31,13 @@ Organizer context from Felix:
 
 Current INDoS schedule shown on this page:
 
-- **June 12, Deeper Traintrack:** BIDS Manager raw-to-BIDS curation, 1.5 hours.
-- **June 12 afternoon, practical workshop:** MEEGqc reproducible MEG/EEG QA/QC, duration to be confirmed.
-- **Optional fallback format:** 45-minute fast-track BIDS Manager session if the programme needs a shorter slot.
+- **June 12th morning:** BIDS Manager extended data curation and conversion workshop, 1h30.
+- **June 12th morning:** BIDS Manager fast-track data curation and conversion session, 45 minutes.
+- **June 12th afternoon:** MEEGqc reproducible EEG/MEG quality assessment and quality-control workshop, duration to be confirmed.
+
+Tutors for all listed sessions: **Dr. Karel López Vilaret** and **Dr. Jorge F. Bosch-Bayard**.
+
+The two BIDS Manager sessions should be grouped together. They cover the same raw-to-BIDS curation and conversion workflow. The difference is depth: the 1h30 session is hands-on and explanatory, while the 45-minute session is the concise version.
 
 ## Repository
 
@@ -86,9 +90,9 @@ Version 3 contains the strongest positioning and should be treated as the primar
 
 Current sessions on the page:
 
-- `Multimodal raw-to-BIDS curation with BIDS Manager: concepts, workflow, and practice`
-- `Reproducible MEG/EEG quality control with MEEGqc`
-- `Fast-track multimodal BIDS curation with BIDS Manager` as an optional fallback format only.
+- `Multimodal raw-to-BIDS curation and conversion with BIDS Manager`
+- `Fast-track BIDS curation and conversion with BIDS Manager`
+- `Reproducible EEG and MEG quality assessment and quality control with MEEGqc`
 
 ## Related Repositories
 
@@ -114,27 +118,30 @@ https://github.com/ANCPLabOldenburg/MEGqc
 
 ## Tool Feature Positioning
 
-BIDS Manager should be presented as more than a converter. It is an interactive raw-to-BIDS curation environment that lets participants understand the acquisition before conversion.
+BIDS Manager must be presented as both a converter and an interactive curation environment. The page should never imply that it only inspects data; it converts raw datasets into BIDS-compliant outputs after allowing users to understand and correct the acquisition inventory. Its positioning is multimodal: MRI, MEG, and EEG workflows in one framework.
 
 Key BIDS Manager points to preserve:
 
-- Scans raw DICOM folders into a metadata inventory before conversion.
+- Converts raw multimodal MRI, MEG, and EEG data into BIDS-compliant datasets using a software-guided workflow.
+- Scans raw acquisitions into a metadata inventory before conversion.
 - Shows studies, subjects, sessions, source folders, sequence names, acquisition times, file counts, series identifiers, inferred modalities, repeated acquisitions, and proposed BIDS names.
 - Allows correction of subject labels, sessions, suffix mapping, inclusion/exclusion decisions, repeated runs, mixed-session folders, and protocol-specific patterns through the GUI.
 - Provides general and specific filters by modality, subject, session, and sequence.
 - Lets users preview the future BIDS dataset as text and as a tree before running conversion.
-- Bridges conversion and post-conversion review with metadata editing, JSON/TSV review, graph views, and imaging/slice inspection.
+- Runs conversion with live logs, conversion heuristics, and post-conversion rename/review logic.
+- Bridges conversion and post-conversion review with metadata editing, JSON/TSV review, graph views, IntendedFor-oriented fieldmap handling, and imaging/slice inspection.
 - Advertisement framing: this is a software-guided curation workflow, not a manual BIDS naming walkthrough.
 
-MEEGqc should be presented as a reproducible QA/QC framework, with QA and QC clearly separated:
+MEEGqc should be presented as a reproducible quality assessment and quality-control framework, with the two layers clearly separated:
 
-- **QA / quality assessment:** measures and profiles data quality evidence.
-- **QC / quality control:** supports documented decisions based on that evidence.
-- QA metrics include STD, peak-to-peak amplitude, PSD, ECG/EOG contamination, muscle artifacts, stimulus checks, and MEG head-motion summaries when available.
-- Outputs include interactive subject HTML reports, metric TSV tables, JSON summaries, BIDS derivatives, group QA/QC reports, and multi-sample comparisons.
+- **Quality assessment:** measures and profiles data quality evidence.
+- **Quality control:** supports documented decisions based on that evidence.
+- Assessment metrics include STD, peak-to-peak amplitude, PSD, ECG/EOG contamination, muscle artifacts, stimulus checks, and MEG head-motion summaries when available.
+- Outputs include interactive subject HTML reports, metric TSV tables, JSON summaries, BIDS derivatives, group quality reports, and multi-sample comparisons.
 - Supports GUI, command-line, and programmatic workflows.
 - Supports MEG, standalone EEG, and EEG channels embedded in MEG recordings.
 - EEG support includes BIDS channel-type correction, EEG montage handling, re-referencing, EEG-specific muscle frequency bands, and EEG report tabs.
+- Positioning from the manuscript: MEEGqc's differentiator is a standalone persistent machine-readable quality-information layer, explicit assessment/control separation, interactive reports at subject/group/multi-sample levels, GUI/CLI/API access, scalable cohort processing, and auditable decision support.
 - Do not display the GQI image. It is acceptable to discuss configurable criteria or summary outputs, but the page should not visually feature the old GQI screenshot.
 
 ## Documentation Sources And Visual Assets
@@ -251,9 +258,12 @@ assets/indos-logo-white.png
 
 - The page supports dark and light themes through the header theme toggle. The selected theme is stored in `localStorage` under `indos-theme`.
 - The hero includes overlapping software screenshots/GIFs from real tool GUIs, MRI/slice animations, and one MEEGqc topomap animation.
-- The animation is a foreground workflow SVG above the title, representing `Raw acquisition -> Acquisition audit -> BIDS curation -> QA: measure -> QC: decide -> Reports`.
-- The animation deliberately separates QA and QC: QA is the evidence/measurement step; QC is the decision/documentation step.
-- The workflow animation uses inline SVG `<animate>` and `<animateMotion>` elements because the earlier CSS-only neural-network style was unclear and not reliably visible.
+- The animation is a lightweight interactive graph-style SVG above the title, representing `Raw multimodal data -> Scan and inspect -> BIDS conversion -> Quality assessment: Measure -> Quality control: Decision -> Reports`.
+- The animation should keep the full terms `Quality assessment` and `Quality control`, with the explanatory words `Measure` and `Decision`.
+- The previous SVG `<animateMotion>` workflow was removed because it was buggy and slow to load; the current SVG uses static path geometry with CSS dash effects plus JavaScript `requestAnimationFrame` dots that travel along the real SVG paths.
+- The normal continuous path markers should remain simple moving dots.
+- The click-triggered marker is a brain image, not the continuous moving dot. It uses `assets/workflow/brain-start.png` and gradually crossfades/evolves toward `assets/workflow/brain-final.png` while moving continuously between nodes.
+- The workflow SVG is clickable and keyboard accessible. A subtle `Click animation to play workflow` hint is shown below the animation. On click or Enter/Space, a larger spotlight and evolving brain marker move smoothly node by node through the workflow. Each arrival triggers a random-color flash burst. At the Reports node, the brain exits upward into the open space above the workflow, grows, and shows a large separated `BrainHack` text popup for 5 seconds unless the visitor clicks again.
 - Tool screenshots and GIFs are interactive. Figures with `.media-frame` or inside `.media-strip` open in a modal. Add `data-title` and `data-detail` to a figure when a custom modal explanation is needed.
 - Text was intentionally reduced from earlier versions because the original hero and section headings were too large.
 - The programme must remain first after the hero. Tool-selling sections come after the detailed programme.
